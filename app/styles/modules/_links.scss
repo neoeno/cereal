@@ -1,0 +1,18 @@
+a{
+  color: inherit;
+  border-bottom: 1px solid white;
+
+  &:hover, &:active{
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.8;
+  }
+
+  &.silent{
+    border-bottom: none;
+
+    &:hover, &:active{
+      opacity: 1;
+    }
+  }
+}

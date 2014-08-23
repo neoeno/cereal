@@ -1,0 +1,18 @@
+.site-heading{
+  h1{
+    margin: 0;
+    font-size: 100px;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: -3px;
+    font-family: "aw-conqueror-carved", sans-serif;
+    @include unselectable;
+  }
+
+  h2{
+    padding-bottom: 18px;
+    text-align: center;
+    letter-spacing: -0.5px;
+    @include unselectable;
+  }
+}

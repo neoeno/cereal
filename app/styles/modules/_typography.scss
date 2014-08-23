@@ -1,0 +1,22 @@
+body{
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+h3{
+  line-height: 1.4;
+  margin-bottom: 28px;
+  letter-spacing: -0.25px;
+}
+
+p,li,blockquote{
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 18px;
+  line-height: 1.4;
+  margin-bottom: 28px;
+  letter-spacing: -0.25px;
+}
+
+blockquote .source{
+  text-align: right;
+}

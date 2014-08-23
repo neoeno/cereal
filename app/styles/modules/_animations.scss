@@ -1,0 +1,31 @@
+.fade-out {
+  @include transition(opacity 0.25s);
+  opacity: 1;
+
+  &.ng-hide {
+    opacity: 0;
+  }
+
+  &.ng-hide-add, &.ng-hide-remove{
+    display: block !important;
+  }
+}
+
+.fade-out--visible{
+  @extend .fade-out;
+
+  display: block !important;
+}
+
+.fade-in {
+  @include transition(opacity 0.25s);
+  opacity: 1;
+
+  &.ng-hide {
+    opacity: 0;
+  }
+
+  &.ng-hide-add, &.ng-hide-remove{
+    display: block !important;
+  }
+}

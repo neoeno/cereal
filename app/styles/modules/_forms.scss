@@ -1,0 +1,36 @@
+.form-flat{
+  .form-control{
+    border-radius: 0;
+    box-shadow: none;
+    outline: 0;
+    border: 0;
+    font-size: 18px;
+    margin-bottom: 6px;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    @include placeholder(white);
+    line-height: 1.6;
+    height: 48px;
+  }
+}
+
+.btn.btn-flat{
+  background: transparent;
+  color: white;
+  width: 100%;
+  outline: 0;
+  border-radius: 0;
+  border: none;
+  font-size: 18px;
+  text-shadow: 1px 1px 2px #666;
+
+  &:active{
+    box-shadow: none;
+    outline: none;
+  }
+
+  &:hover{
+    text-shadow: 1px 1px 4px #555;
+  }
+}

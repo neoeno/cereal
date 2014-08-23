@@ -1,0 +1,22 @@
+.container-flex-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
+.background-wrapper{
+  height: 100%;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.headroom-3r{
+  padding-top: $r*3;
+}
+
+.tailroom-12r{
+  padding-bottom: $r*12;
+}
