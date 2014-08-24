@@ -1,21 +1,21 @@
 .container
   .row
-    .col-md-6.col-md-offset-1
-      h1.perg-offset-15 free wifi
+    .col-md-6
+      h1.perg-offset-20 free wifi
 
 .container
   .row
-    .col-md-6.col-md-offset-1
+    .col-md-6
       .page-index
         .page-index__item.row ng-repeat="page in pages" class="page-index__item--status-{{page.status.toLowerCase()}}"
-          .perg-15
+          .perg-20
             .-number
               ' {{page.index}}
-          .perg-85.-background-box
+          .perg-80.-background-box
             .row.-top-row
               .col-xs-6
                 .-date
-                  ' {{page.scheduledDate}}
+                  ' {{page.scheduledDate | date : "MMMM d"}}
               .col-xs-6.text-right
                 .-status
                   ' {{page.status}}
