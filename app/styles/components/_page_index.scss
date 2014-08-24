@@ -3,6 +3,7 @@
 }
 
 [class^="page-index__item"]{
+  $default-bg: $c-pastel-gray;
   margin: $r*1 0;
 
   .-number {
@@ -12,14 +13,17 @@
     text-align: center;
   }
 
+  .-background-box{
+    height: 64px;
+    padding: $r;
+    background: $default-bg;
+  }
+
   .-top-row{
     line-height: $x-height;
     margin-bottom: 12px;
-  }
-
-  .-background-box{
-    padding: $r;
-    background: $c-pastel-gray;
+    color: darken($default-bg, 50%);
+    text-shadow: 1px 1px lighten($default-bg, 10%);
   }
 
   .-title{
