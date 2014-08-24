@@ -29,6 +29,13 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
+      slim: {
+        files: ['<%= yeoman.app %>/views/{,*/}*.slim'],
+        tasks: ['slim'],
+        options: {
+          livereload: '<%= connect.options.livereload %>'
+        }
+      },
       bower: {
         files: ['bower.json'],
         tasks: ['wiredep']
@@ -56,7 +63,7 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/{,*/}*.{html,slim}',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
@@ -73,7 +80,6 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          open: true,
           middleware: function (connect) {
             return [
               connect.static('.tmp'),
@@ -173,6 +179,20 @@ module.exports = function (grunt) {
       sass: {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
+      }
+    },
+
+        // Compiles slim to HTML
+    slim: {
+      dist: {
+        files: [{
+          trace: true,
+          expand: true,
+          cwd: '<%= yeoman.app %>/views',
+          src: ['{,*/}*.slim'],
+          dest: '.tmp/views',
+          ext: '.html'
+        }]
       }
     },
 
@@ -379,12 +399,14 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
+        'slim',
         'compass:server'
       ],
       test: [
         'compass'
       ],
       dist: [
+        'slim',
         'compass:dist',
         'imagemin',
         'svgmin'
@@ -400,6 +422,7 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-slim');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
