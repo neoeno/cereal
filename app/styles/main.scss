@@ -5,15 +5,19 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // endbower
 
 $r: 12px;
+@import 'modules/colors';
 
 @import 'modules/mixins';
 @import 'partials/base';
 @import 'modules/typography';
 @import 'modules/helpers';
 @import 'modules/layout';
+@import 'modules/perg';
 @import 'modules/forms';
 @import 'modules/links';
 @import 'modules/animations';
 @import 'flourish/backgrounds';
 
 @import 'partials/site_heading';
+
+@import 'components/page_index';

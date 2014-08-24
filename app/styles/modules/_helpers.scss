@@ -19,3 +19,23 @@
   top: 50%;
   width: 100%;
 }
+
+.gutterless{
+  padding: 0;
+}
+
+.padding-left-r{
+  padding-left: $r;
+}
+
+.padding-left-2r{
+  padding-left: $r*2;
+}
+
+.padding-right-r{
+  padding-right: $r;
+}
+
+.padding-right-2r{
+  padding-right: $r*2;
+}

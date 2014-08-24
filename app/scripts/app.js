@@ -15,16 +15,13 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'cereal.pages'
   ])
-  .config(function ($routeProvider, $locationProvider) {
+  .config(function ($routeProvider){//}, $locationProvider) {
     // $locationProvider.html5Mode(true);
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/pages'
       });
   })
   .run(function(){

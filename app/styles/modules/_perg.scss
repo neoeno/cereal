@@ -1,0 +1,10 @@
+@for $i from 1 through 20 {
+  .perg-#{$i*5}{
+    float: left;
+    width: $i*5%;
+  }
+
+  .perg-offset-#{$i*5}{
+    margin-left: $i*5%;
+  }
+}

@@ -1,0 +1,23 @@
+.container
+  .row
+    .col-md-6.col-md-offset-1
+      h1.perg-offset-15 free wifi
+
+.container
+  .row
+    .col-md-6.col-md-offset-1
+      .page-index
+        .page-index__item.row ng-repeat="page in pages" class="page-index__item--status-{{page.status.toLowerCase()}}"
+          .perg-15
+            .-number
+              ' {{page.index}}
+          .perg-85.-background-box
+            .row.-top-row
+              .col-xs-6
+                .-date
+                  ' {{page.scheduledDate}}
+              .col-xs-6.text-right
+                .-status
+                  ' {{page.status}}
+            .-title
+              ' {{page.abstract}}

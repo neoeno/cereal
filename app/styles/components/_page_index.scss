@@ -1,0 +1,58 @@
+.page-index{
+  margin: $r*2 0;
+}
+
+[class^="page-index__item"]{
+  margin: $r*1 0;
+
+  .-number {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 60px;
+    text-align: center;
+  }
+
+  .-top-row{
+    line-height: $x-height;
+    margin-bottom: 12px;
+  }
+
+  .-background-box{
+    padding: $r;
+    background: $c-pastel-gray;
+  }
+
+  .-title{
+    font-size: 22px;
+    line-height: $x-height;
+  }
+
+  &.page-index__item--status-drafted{
+    .-background-box{
+      background: $c-pastel-amber;
+    }
+  }
+
+  $status-colors: ((drafted, $c-pastel-amber),
+                  (complete, $c-pastel-green));
+
+  @each $pair in $status-colors {
+    $status: nth($pair, 1);
+    $color: nth($pair, 2);
+
+    &.page-index__item--status-#{$status}{
+      .-background-box{
+        background: $color;
+      }
+
+      .-top-row{
+        color: darken($color, 50%);
+        text-shadow: 1px 1px lighten($color, 10%);
+      }
+    }
+  }
+
+  &.page-index__item--status-past{
+    opacity: 0.25;
+  }
+}

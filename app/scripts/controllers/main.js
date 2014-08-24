@@ -8,5 +8,5 @@
  * Controller of the hotelApp
  */
 angular.module('cereal')
-  .controller('MainCtrl', function ($scope, $timeout) {
+  .controller('MainCtrl', function () {
   });
