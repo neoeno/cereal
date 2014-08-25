@@ -1,10 +1,10 @@
-angular.module('cereal.pages').service('PageService', function() {
+angular.module('cereal.pages').service('PageService', function($filter) {
   'use strict';
 
   var PageService = this,
       fakePages = []
 
-  var startDate = new Date(2014, 0, 1),
+  var startDate = new Date(2014, 0, 6),
       pagesPerWeek = 4,
       schedule = [0,2,4,5],
       rSchedule = [1,1,2,2,3,4,4]
@@ -34,8 +34,7 @@ angular.module('cereal.pages').service('PageService', function() {
         weeksElapsed = Math.floor(daysElapsed/7),
         daysLeftOver = daysElapsed % 7,
         index = weeksElapsed * pagesPerWeek + rSchedule[daysLeftOver]
-
-    return index 
+    return index
   }
 
   function getDateForIndex(index) {
@@ -50,10 +49,19 @@ angular.module('cereal.pages').service('PageService', function() {
 
   function fakeSkin(data) {
     data.scheduledDate = getDateForIndex(data.index)
-    if( data.scheduledDate < new Date() ){
-      data.status = 'Past'
-    }
+    data.temporalStatus = temporalStatus(data.scheduledDate)
     return data
+  }
+
+  function temporalStatus(date) {
+    var now = new Date
+    if( date > now ){
+      return 'future'
+    } else if( $filter('date')(date, 'yyyyMMdd') == $filter('date')(now, 'yyyyMMdd') ) {
+      return 'today'
+    } else {
+      return 'past'
+    }
   }
 
 
@@ -62,7 +70,7 @@ angular.module('cereal.pages').service('PageService', function() {
 
   fakePages[134] = {
       index: 134,
-      status: 'Past',
+      status: 'Drafted',
       abstract: 'James likes a cat.' }
 
   fakePages[135] = {

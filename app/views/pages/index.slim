@@ -7,7 +7,7 @@
   .row
     .col-md-6
       .page-index
-        .page-index__item.row ng-repeat="page in pages" class="page-index__item--status-{{page.status.toLowerCase()}}"
+        .page-index__item.row ng-repeat="page in pages" class="page-index__item -status-{{page.status.toLowerCase()}} -status-{{page.temporalStatus.toLowerCase()}}"
           .perg-20
             .-number
               ' {{page.index}}
@@ -21,3 +21,7 @@
                   ' {{page.status}}
             .-title
               ' {{page.abstract}}
+          .-offset-message ng-if="page.temporalStatus == 'today'"
+            .glyphicon.glyphicon-tint
+    .col-md-5.col-md-offset-1
+      ' writing
