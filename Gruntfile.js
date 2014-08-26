@@ -30,7 +30,7 @@ module.exports = function (grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       slim: {
-        files: ['<%= yeoman.app %>/views/{,*/}*.slim'],
+        files: ['<%= yeoman.app %>/views/{,**/}*.slim'],
         tasks: ['slim'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -189,7 +189,7 @@ module.exports = function (grunt) {
           trace: true,
           expand: true,
           cwd: '<%= yeoman.app %>/views',
-          src: ['{,*/}*.slim'],
+          src: ['{,**/}*.slim'],
           dest: '.tmp/views',
           ext: '.html'
         }]
