@@ -1,0 +1,8 @@
+.row
+  .col-sm-9
+    h2
+      ' {{selectedPage.abstract || 'Page ' + selectedPage.index}}
+  .col-sm-3.text-right style="padding-top: 20px;"
+    .btn.btn-primary ng-click="editPage()"
+      .glyphicon.glyphicon-pencil
+div simple-format="selectedPage.body"

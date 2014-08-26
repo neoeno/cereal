@@ -22,3 +22,9 @@ p,li,blockquote{
 blockquote .source{
   text-align: right;
 }
+
+.ellipsis{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}

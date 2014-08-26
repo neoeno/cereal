@@ -1,0 +1,17 @@
+.page-index
+  .page-index__item.row ng-repeat="page in pages" ng-click="selectPage(page)" class="page-index__item -status-{{page.status.toLowerCase()}} -status-{{page.temporalStatus.toLowerCase()}} {{page.$saving ? '-status-saving' : ''}}"
+    .perg-20
+      .-number
+        ' {{page.index}}
+    .perg-80.-background-box
+      .row.-top-row
+        .col-xs-6
+          .-date
+            ' {{page.scheduledDate | date : "MMMM d"}}
+        .col-xs-6.text-right
+          .-status
+            ' {{page.status}}
+      .-title.ellipsis
+        ' {{page.abstract}}
+    .-offset-message ng-if="page.icon"
+      .glyphicon class="glyphicon-{{page.icon}}"

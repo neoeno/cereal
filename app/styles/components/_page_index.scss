@@ -45,21 +45,25 @@
 
   .-title{
     font-size: 22px;
-    line-height: $x-height;
+    line-height: 1.2;
+    margin-top: -0.25em;
   }
 
   .-offset-message{
     position: absolute;
     left: 0;
     top: 0;
-    margin-left: 102.5%;
+    margin-left: 102.25%;
+    padding: 0 2px;
     white-space: nowrap;
     font-size: 48px;
     line-height: 74px;
   }
 
-  $status-colors: ((drafted, $c-pastel-amber),
-                  (complete, $c-pastel-green));
+  $status-colors: ((draft, $c-pastel-amber),
+                  (complete, $c-pastel-green),
+                  (help, $c-pastel-red),
+                  (idea, $c-pastel-blue));
 
   @each $pair in $status-colors {
     $status: nth($pair, 1);
@@ -75,6 +79,10 @@
         text-shadow: 1px 1px lighten($color, 10%);
       }
     }
+  }
+
+  &.-status-saving{
+    animation: blink 0.5s steps(1) infinite alternate;
   }
 
   &.-status-past{

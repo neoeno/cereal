@@ -1,27 +1,18 @@
 .container
   .row
     .col-md-6
-      h1.perg-offset-20 free wifi
+      h1.perg-offset-20: a.silent href="/" free wifi
 
 .container
   .row
     .col-md-6
-      .page-index
-        .page-index__item.row ng-repeat="page in pages" class="page-index__item -status-{{page.status.toLowerCase()}} -status-{{page.temporalStatus.toLowerCase()}}"
-          .perg-20
-            .-number
-              ' {{page.index}}
-          .perg-80.-background-box
-            .row.-top-row
-              .col-xs-6
-                .-date
-                  ' {{page.scheduledDate | date : "MMMM d"}}
-              .col-xs-6.text-right
-                .-status
-                  ' {{page.status}}
-            .-title
-              ' {{page.abstract}}
-          .-offset-message ng-if="page.temporalStatus == 'today'"
-            .glyphicon.glyphicon-tint
-    .col-md-5.col-md-offset-1
-      ' writing
+      div ng-include="'/views/pages/partials/list.html'"
+
+
+    .col-md-5.col-md-offset-1 ng-if="selectedPage"
+      div ng-if="!isEditingPage"
+        div ng-include="'/views/pages/partials/show.html'"
+
+
+      div ng-if="isEditingPage"
+        div ng-include="'/views/pages/partials/form.html'"

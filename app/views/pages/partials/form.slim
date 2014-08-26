@@ -1,0 +1,24 @@
+form.form-subtle ng-submit="savePage()"
+  .row
+    .col-sm-9
+      h2 Editing {{selectedPage.index}}
+    .col-sm-3.text-right style="padding-top: 20px;"
+      button.btn.btn-primary type="submit"
+        .glyphicon.glyphicon-floppy-disk
+  .form-group
+    input.form-control type="text" ng-model="selectedPage.abstract" placeholder="Abstract"
+  .form-group
+    textarea.form-control ng-model="selectedPage.body" placeholder="WRITE" rows="10"
+  .form-group
+    .btn-group
+      .btn.btn-pastel-gray ng-model="selectedPage.status" btn-radio="''" None
+      .btn.btn-pastel-blue ng-model="selectedPage.status" btn-radio="'idea'" Idea
+      .btn.btn-pastel-amber ng-model="selectedPage.status" btn-radio="'draft'" Draft
+      .btn.btn-pastel-red ng-model="selectedPage.status" btn-radio="'help'" Help!
+      .btn.btn-pastel-green ng-model="selectedPage.status" btn-radio="'complete'" Complete
+  .form-group
+    .btn-group.icon-selector
+      .btn.btn-default ng-model="selectedPage.icon" btn-radio="''"
+        .glyphicon.glyphicon-minus
+      .btn.btn-default ng-model="selectedPage.icon" btn-radio="icon" ng-repeat="icon in icons"
+        .glyphicon class="glyphicon-{{icon}}"

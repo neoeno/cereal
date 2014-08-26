@@ -1,0 +1,10 @@
+.icon-selector{
+  .btn{
+    border-radius: 0;
+    margin-bottom: -1px;
+
+    &:first-child{
+    margin-left: -1px !important;
+    }
+  }
+}

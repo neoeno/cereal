@@ -13,6 +13,18 @@ $c-pastel-indigo: #acbae5; // h:225
 $c-pastel-magenta:#ceace5; // h:275
 $c-pastel-pink:   #e5acce; // h:325
 
+$c-pastel-list:  (('gray', $c-pastel-gray),
+                  ('red', $c-pastel-red),
+                  ('orange', $c-pastel-orange),
+                  ('amber', $c-pastel-amber),
+                  ('lime', $c-pastel-lime),
+                  ('green', $c-pastel-green),
+                  ('cyan', $c-pastel-cyan),
+                  ('blue', $c-pastel-blue),
+                  ('indigo', $c-pastel-indigo),
+                  ('magenta', $c-pastel-magenta),
+                  ('pink', $c-pastel-pink));
+
 // c-bright-
 $c-bright-amber: hsl(50, 90, 50);
 $c-bright-red:   hsl(0, 90, 50);

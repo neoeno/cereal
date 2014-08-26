@@ -15,7 +15,9 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'cereal.pages'
+    'cereal.pages',
+    'seagull.utils',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider){//}, $locationProvider) {
     // $locationProvider.html5Mode(true);

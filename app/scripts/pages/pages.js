@@ -1,5 +1,6 @@
 angular.module('cereal.pages', [
-  'ngRoute'
+  'ngRoute',
+  'parse-angular'
   ]).config(function($routeProvider){
     'use strict';
 

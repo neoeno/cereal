@@ -1,0 +1,10 @@
+@each $pair in $c-pastel-list {
+  $name: nth($pair, 1);
+  $color: nth($pair, 2);
+
+  .btn-pastel-#{$name} {
+    color: $text-color;
+    background: $color;
+    border-color: darken($color, 25%);
+  }
+}

@@ -1,33 +1,49 @@
-angular.module('cereal.pages').service('PageService', function($filter) {
+angular.module('cereal.pages').service('PageService', function($filter, Page) {
   'use strict';
 
   var PageService = this,
-      fakePages = []
+      fakePages = [],
+      ParsePage = Parse.Object.extend('Page')
 
   var startDate = new Date(2014, 0, 6),
       pagesPerWeek = 4,
-      schedule = [0,2,4,5],
+      // schedule = [0,2,4,5],
       rSchedule = [1,1,2,2,3,4,4]
 
+
+
   PageService.get = function(index) {
-    return fakeSkin(fakePages[index] || PageService.makePage(index))
+    return new Page({index: index})
   }
 
   PageService.getRange = function(start, end) {
-    var pages = []
-    for( var i=start ; i<=end ; i++ ) {
-      pages.push( PageService.get(i) )
-    }
+    var pages = [],
+        query = new Parse.Query(ParsePage)
+
+    query.greaterThanOrEqualTo("index", start)
+    query.lessThanOrEqualTo("index", end)
+
+    query.find({
+      success: function(results) {
+
+        // Default to array of blank objects
+        for(var i=start ; i <= end ; i++) {
+          pages.push( new Page({index: i}) )
+        }
+
+        // Override with the objects we found
+        results.forEach(function(obj) {
+          var page = Page.wrap(obj)
+          pages[page.index - start] = page
+        })
+
+      }
+    })
+
     return pages
   }
 
-  PageService.makePage = function(index) {
-    return {
-      index: index
-    }
-  }
-
-  PageService.getNextPage = function(date){
+  PageService.nextIndexToBeReleased = function(date){
     date = date || new Date()
     var oneDay = 24*60*60*1000,
         daysElapsed = Math.round(Math.abs((startDate.getTime() - date.getTime())/(oneDay))),
@@ -36,57 +52,6 @@ angular.module('cereal.pages').service('PageService', function($filter) {
         index = weeksElapsed * pagesPerWeek + rSchedule[daysLeftOver]
     return index
   }
-
-  function getDateForIndex(index) {
-    var weeksElapsed = Math.floor(index/pagesPerWeek)
-    var pageNumberInWeek = index % pagesPerWeek
-
-    var date = angular.copy(startDate)
-    date.setDate( date.getDate() + weeksElapsed * 7 + schedule[pageNumberInWeek] )
-
-    return date
-  }
-
-  function fakeSkin(data) {
-    data.scheduledDate = getDateForIndex(data.index)
-    data.temporalStatus = temporalStatus(data.scheduledDate)
-    return data
-  }
-
-  function temporalStatus(date) {
-    var now = new Date
-    if( date > now ){
-      return 'future'
-    } else if( $filter('date')(date, 'yyyyMMdd') == $filter('date')(now, 'yyyyMMdd') ) {
-      return 'today'
-    } else {
-      return 'past'
-    }
-  }
-
-
-  ///////////////////////////////////////////////
-
-
-  fakePages[134] = {
-      index: 134,
-      status: 'Drafted',
-      abstract: 'James likes a cat.' }
-
-  fakePages[135] = {
-      index: 135,
-      status: 'Drafted',
-      abstract: 'James walks to the shop.'}
-
-  fakePages[136] = {
-      index: 136,
-      status: 'Complete',
-      abstract: 'James views this as over.' }
-
-  fakePages[138] = {
-      index: 138,
-      status: 'Editing',
-      abstract: 'James is a cat.' }
 
 
 })
