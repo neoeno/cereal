@@ -3,8 +3,10 @@
     h2
       ' {{selectedPage.abstract || 'Page ' + selectedPage.index}}
   .col-sm-3.text-right style="padding-top: 20px;"
-    .btn.btn-primary ng-click="editPage()"
+    .btn.btn-primary ng-click="editPage()" ng-if="!selectedPage.isEditLocked"
       .glyphicon.glyphicon-pencil
+    .btn.btn-warning ng-click="editPage()" ng-if="selectedPage.isEditLocked" tooltip="Currently being edited!" tooltip-placement="left"
+      .glyphicon.glyphicon-lock
 div simple-format="selectedPage.body"
 
 div ng-if="selectedPage.writers.length > 0"

@@ -97,6 +97,11 @@ angular.module('cereal.pages').factory('Page', function($filter, User) {
       return this.writers_
     },
 
+    get isEditLocked() {
+      // if edited less than 15 minutes ago.
+      return this.$parseObj.get('editLock') > ((+new Date()) - 60*15*1000)
+    },
+
     // COMPUTED PROPERTIES //
 
     get temporalStatus() {
@@ -123,10 +128,16 @@ angular.module('cereal.pages').factory('Page', function($filter, User) {
       self.$saving = true
 
       self.addCurrentUserRelation()
+      self.$parseObj.set('editLock', null)
 
       return self.$parseObj.save().then(function() {
         self.$saving = false
       })
+    },
+
+    editLock: function() {
+      this.$parseObj.set('editLock', new Date())
+      this.$parseObj.save()
     },
 
     // PRIVATE METHODS //
@@ -164,10 +175,7 @@ angular.module('cereal.pages').factory('Page', function($filter, User) {
 
     addCurrentUserRelation: function() {
       this.$parseObj.relation('writers').add(Parse.User.current())
-
-      if(typeof this.writers_ !== 'undefined') {
-        this.writers_.push(User.wrap(Parse.User.current()))
-      }
+      this.writers_ = undefined
     }
 
   }

@@ -22,6 +22,7 @@ angular.module('cereal.pages').controller('PagesIndexCtrl', function($scope, Pag
   }
 
   $scope.editPage = function() {
+    $scope.selectedPage.editLock()
     $scope.isEditingPage = true
   }
 
