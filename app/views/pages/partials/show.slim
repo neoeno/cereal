@@ -6,3 +6,8 @@
     .btn.btn-primary ng-click="editPage()"
       .glyphicon.glyphicon-pencil
 div simple-format="selectedPage.body"
+
+div ng-if="selectedPage.writers.length > 0"
+  h5 Writers
+  a.silent href="{{writer.link}}" ng-repeat="writer in selectedPage.writers"
+    img ng-src="{{writer.avatar}}" tooltip="{{writer.name}}" tooltip-placement="bottom"

@@ -33,6 +33,10 @@ angular.module('cereal.users').factory('User', function() {
       return this.avatarOfDimensions(50, 50)
     },
 
+    get link() {
+      return 'http://facebook.com/'+this.facebookID
+    },
+
     // PUBLIC METHODS
 
     avatarOfDimensions: function(width, height) {

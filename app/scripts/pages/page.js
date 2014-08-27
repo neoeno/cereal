@@ -1,4 +1,4 @@
-angular.module('cereal.pages').factory('Page', function($filter, $rootScope) {
+angular.module('cereal.pages').factory('Page', function($filter, User) {
   'use strict';
 
   var startDate = new Date(2014, 0, 6),
@@ -40,8 +40,6 @@ angular.module('cereal.pages').factory('Page', function($filter, $rootScope) {
         }else{
           page.$parseObj = new ParsePage({index: index})
         }
-
-        $rootScope.$digest()
       }
     })
 
@@ -91,6 +89,14 @@ angular.module('cereal.pages').factory('Page', function($filter, $rootScope) {
       this.$parseObj.set('body', body)
     },
 
+    get writers() {
+      if(typeof this.writers_ === 'undefined') {
+        this.fetchWriters()
+      }
+
+      return this.writers_
+    },
+
     // COMPUTED PROPERTIES //
 
     get temporalStatus() {
@@ -116,9 +122,7 @@ angular.module('cereal.pages').factory('Page', function($filter, $rootScope) {
       var self = this
       self.$saving = true
 
-      self.passThru.forEach(function(attribute) {
-        self.$parseObj.set(attribute, self[attribute])
-      })
+      self.addCurrentUserRelation()
 
       return self.$parseObj.save().then(function() {
         self.$saving = false
@@ -126,6 +130,19 @@ angular.module('cereal.pages').factory('Page', function($filter, $rootScope) {
     },
 
     // PRIVATE METHODS //
+
+    fetchWriters: function() {
+      var self = this
+      self.writers_ = []
+      self.writers_.$loading = true
+
+      self.$parseObj.relation('writers').query().find({
+        success: function(writers){
+          Array.prototype.push.apply(self.writers_, writers.map(User.wrap));
+          self.writers_.$loading = false
+        }
+      })
+    },
 
     calcScheduledDate: function() {
       var weeksElapsed = Math.floor( this.index / this.constants.pagesPerWeek )
@@ -142,6 +159,14 @@ angular.module('cereal.pages').factory('Page', function($filter, $rootScope) {
         return this.$parseObj.get(field)
       }else{
         return ''
+      }
+    },
+
+    addCurrentUserRelation: function() {
+      this.$parseObj.relation('writers').add(Parse.User.current())
+
+      if(typeof this.writers_ !== 'undefined') {
+        this.writers_.push(User.wrap(Parse.User.current()))
       }
     }
 
