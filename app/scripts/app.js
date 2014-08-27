@@ -1,5 +1,7 @@
 'use strict';
 
+Parse.initialize('n42JAqtw5FUsJQb3UwBBNOrnueDo1dlImGbmk89N', 'NF0USFiBZUTsPPGyyucJcXVKS20eqhKdDqZAShcV');
+
 /**
  * @ngdoc overview
  * @name cereal
@@ -16,6 +18,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'cereal.pages',
+    'cereal.users',
     'seagull.utils',
     'ui.bootstrap'
   ])
@@ -23,9 +26,6 @@ angular
     // $locationProvider.html5Mode(true);
     $routeProvider
       .otherwise({
-        redirectTo: '/pages'
+        redirectTo: '/login'
       });
-  })
-  .run(function(){
-    Parse.initialize('n42JAqtw5FUsJQb3UwBBNOrnueDo1dlImGbmk89N', 'NF0USFiBZUTsPPGyyucJcXVKS20eqhKdDqZAShcV');
   })

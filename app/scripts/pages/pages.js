@@ -5,11 +5,8 @@ angular.module('cereal.pages', [
     'use strict';
 
     $routeProvider
-      .when('/', {
+      .when('/pages', {
         templateUrl: 'views/pages/index.html',
         controller: 'PagesIndexCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
       });
   })

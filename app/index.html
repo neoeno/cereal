@@ -43,12 +43,34 @@
     <script src="scripts/components/autofocus/autofocus.js"></script>
     <script src="scripts/components/utils/simple_format.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/current_service.js"></script>
+    <script src="scripts/users/users.js"></script>
+    <script src="scripts/users/user.js"></script>
+    <script src="scripts/users/users_log_in_ctrl.js"></script>
     <script src="scripts/pages/pages.js"></script>
     <script src="scripts/pages/page.js"></script>
     <script src="scripts/pages/page_service.js"></script>
     <script src="scripts/pages/pages_index_ctrl.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <!-- endbuild -->
+
+    <script>
+      window.fbAsyncInit = function() {
+        Parse.FacebookUtils.init({
+          appId      : '1540992852789190',
+          xfbml      : false,
+          version    : 'v2.0'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <!-- Google Analytics: -->
     <script>

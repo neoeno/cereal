@@ -21,6 +21,7 @@
     "jquery": true,
     "globals": {
       "angular": false,
-      "Parse": false
+      "Parse": false,
+      "FB": false
     }
 }

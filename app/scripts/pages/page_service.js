@@ -2,7 +2,6 @@ angular.module('cereal.pages').service('PageService', function($filter, Page) {
   'use strict';
 
   var PageService = this,
-      fakePages = [],
       ParsePage = Parse.Object.extend('Page')
 
   var startDate = new Date(2014, 0, 6),
@@ -20,8 +19,8 @@ angular.module('cereal.pages').service('PageService', function($filter, Page) {
     var pages = [],
         query = new Parse.Query(ParsePage)
 
-    query.greaterThanOrEqualTo("index", start)
-    query.lessThanOrEqualTo("index", end)
+    query.greaterThanOrEqualTo('index', start)
+    query.lessThanOrEqualTo('index', end)
 
     query.find({
       success: function(results) {
