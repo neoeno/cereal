@@ -1,7 +1,7 @@
 angular.module('cereal.pages').factory('Page', function($filter, User, Version) {
   'use strict';
 
-  var startDate = new Date(2014, 0, 6),
+  var startDate = new Date(2014, 9, 6),
       pagesPerWeek = 4,
       schedule = [0,2,4,5],
       rSchedule = [1,1,2,2,3,4,4],
@@ -171,7 +171,7 @@ angular.module('cereal.pages').factory('Page', function($filter, User, Version) 
       self.versions_.$loading = true
 
       var query = new Parse.Query(ParsePageVersion)
-      query.equalTo('pageId', self.$parseObj.id).descending("createdAt").find({
+      query.equalTo('pageId', self.$parseObj.id).descending('createdAt').find({
           success: function(versions){
             Array.prototype.push.apply(self.versions_, versions.map(Version.wrap));
             self.versions_.$loading = false

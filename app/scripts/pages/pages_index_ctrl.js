@@ -1,10 +1,10 @@
 angular.module('cereal.pages').controller('PagesIndexCtrl', function($scope, PageService, $filter) {
   'use strict';
 
-  var nextPage = PageService.nextIndexToBeReleased(),
+  var //nextPage = PageService.nextIndexToBeReleased(),
       versionsShowing = []
 
-  $scope.pages = PageService.getRange(nextPage-2,nextPage+5)
+  $scope.pages = PageService.getRange(0, 10)
 
   $scope.icons = ['asterisk', 'cloud', 'glass', 'music', 'envelope',
   'search', 'heart', 'star', 'ok', 'remove', 'film', 'signal',

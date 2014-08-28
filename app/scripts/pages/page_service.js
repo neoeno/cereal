@@ -4,7 +4,7 @@ angular.module('cereal.pages').service('PageService', function($filter, Page) {
   var PageService = this,
       ParsePage = Parse.Object.extend('Page')
 
-  var startDate = new Date(2014, 0, 6),
+  var startDate = new Date(2014, 9, 6),
       pagesPerWeek = 4,
       // schedule = [0,2,4,5],
       rSchedule = [1,1,2,2,3,4,4]

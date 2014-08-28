@@ -1,4 +1,4 @@
-angular.module('cereal.users').controller('UsersLogInCtrl', function($scope, $location, Current) {
+angular.module('cereal.users').controller('UsersLogInCtrl', function($scope, $location) {
   'use strict';
 
   $scope.logInWithFacebook = function() {
