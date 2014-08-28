@@ -11,6 +11,22 @@ angular.module('cereal.users').factory('User', function() {
     return user
   }
 
+  User.find = function(id) {
+    var user = new User()
+
+    var query = new Parse.Query(Parse.User)
+    query.equalTo('objectId', id)
+    query.first({
+      success: function(result) {
+        if(result) {
+          user.$parseObj = result
+        }
+      }
+    })
+
+    return user
+  }
+
   User.prototype = {
 
     // GETTERS/SETTERS
@@ -24,7 +40,9 @@ angular.module('cereal.users').factory('User', function() {
     },
 
     get facebookID() {
-      return this.$parseObj.get('authData').facebook.id
+      if(this.$parseObj){
+        return this.$parseObj.get('authData').facebook.id
+      }
     },
 
     // COMPUTED PROPERTIES

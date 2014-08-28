@@ -1,15 +1,26 @@
-.row
-  .col-sm-9
-    h2
-      ' {{selectedPage.abstract || 'Page ' + selectedPage.index}}
-  .col-sm-3.text-right style="padding-top: 20px;"
-    .btn.btn-primary ng-click="editPage()" ng-if="!selectedPage.isEditLocked"
-      .glyphicon.glyphicon-pencil
-    .btn.btn-warning ng-click="editPage()" ng-if="selectedPage.isEditLocked" tooltip="Currently being edited!" tooltip-placement="left"
-      .glyphicon.glyphicon-lock
-div simple-format="selectedPage.body"
+.page-display
+  .row
+    .col-sm-9
+      h2
+        ' {{selectedPage.abstract || 'Page ' + selectedPage.index}}
+    .col-sm-3.text-right style="padding-top: 20px;"
+      .btn.btn-primary ng-click="editPage()" ng-if="!selectedPage.isEditLocked"
+        .glyphicon.glyphicon-pencil
+      .btn.btn-warning ng-click="editPage()" ng-if="selectedPage.isEditLocked" tooltip="Currently being edited!" tooltip-placement="left"
+        .glyphicon.glyphicon-lock
+  .body-text btf-markdown="selectedPage.body"
 
-div ng-if="selectedPage.writers.length > 0"
-  h5 Writers
-  a.silent href="{{writer.link}}" ng-repeat="writer in selectedPage.writers"
-    img ng-src="{{writer.avatar}}" tooltip="{{writer.name}}" tooltip-placement="bottom"
+  div ng-if="selectedPage.versions.length > 0"
+    h5 Versions
+    ul.version-list
+      li.clicky ng-repeat="version in selectedPage.versions" ng-click="toggleShowVersion(version)"
+        .media
+          .pull-left
+            a href="{{version.writer.link}}" target="_blank"
+              img.media-object ng-src="{{version.writer.avatar}}" tooltip="{{version.writer.name}}" tooltip-placement="bottom"
+          .media-body
+            a ng-if="!shouldShowVersion(version)"
+              p
+                ' {{ version.date | date : 'MMM d, y h.mma' }}
+            .body-text btf-markdown="diff(selectedPage.versions[$index+1].body, version.body)" ng-if="shouldShowVersion(version) && !$last"
+            .body-text btf-markdown="diff('', version.body)" ng-if="shouldShowVersion(version) && $last"

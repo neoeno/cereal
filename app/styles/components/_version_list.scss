@@ -1,0 +1,24 @@
+.version-list{
+  list-style-type: none;
+  padding-left: 0;
+
+  ins{
+    color: $c-bright-green;
+    text-decoration: none;
+  }
+
+  del{
+    color: $c-bright-red;
+    text-decoration: none;
+  }
+
+  li{
+    border: 1px solid $c-pastel-gray;
+    padding: $r;
+    margin-bottom: $r;
+
+    p:last-child{
+      margin-bottom: 0;
+    }
+  }
+}

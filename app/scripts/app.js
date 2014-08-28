@@ -19,7 +19,6 @@ angular
     'ngTouch',
     'cereal.pages',
     'cereal.users',
-    'seagull.utils',
     'ui.bootstrap'
   ])
   .config(function ($routeProvider){//}, $locationProvider) {

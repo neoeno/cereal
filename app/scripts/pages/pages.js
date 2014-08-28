@@ -1,6 +1,9 @@
 angular.module('cereal.pages', [
   'ngRoute',
-  'parse-angular'
+  'ngSanitize',
+  'parse-angular',
+  'diff',
+  'btford.markdown'
   ]).config(function($routeProvider){
     'use strict';
 

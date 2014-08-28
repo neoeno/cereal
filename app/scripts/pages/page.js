@@ -1,11 +1,12 @@
-angular.module('cereal.pages').factory('Page', function($filter, User) {
+angular.module('cereal.pages').factory('Page', function($filter, User, Version) {
   'use strict';
 
   var startDate = new Date(2014, 0, 6),
       pagesPerWeek = 4,
       schedule = [0,2,4,5],
       rSchedule = [1,1,2,2,3,4,4],
-      ParsePage = Parse.Object.extend('Page')
+      ParsePage = Parse.Object.extend('Page'),
+      ParsePageVersion = Parse.Object.extend('PageVersion')
 
   var Page = function(params){
     var self = this
@@ -102,6 +103,14 @@ angular.module('cereal.pages').factory('Page', function($filter, User) {
       return this.$parseObj.get('editLock') > ((+new Date()) - 60*15*1000)
     },
 
+    get versions() {
+      if(typeof this.versions_ === 'undefined') {
+        this.fetchVersions()
+      }
+
+      return this.versions_
+    },
+
     // COMPUTED PROPERTIES //
 
     get temporalStatus() {
@@ -132,6 +141,7 @@ angular.module('cereal.pages').factory('Page', function($filter, User) {
 
       return self.$parseObj.save().then(function() {
         self.$saving = false
+        self.versions_ = undefined
       })
     },
 
@@ -153,6 +163,20 @@ angular.module('cereal.pages').factory('Page', function($filter, User) {
           self.writers_.$loading = false
         }
       })
+    },
+
+    fetchVersions: function() {
+      var self = this
+      self.versions_ = []
+      self.versions_.$loading = true
+
+      var query = new Parse.Query(ParsePageVersion)
+      query.equalTo('pageId', self.$parseObj.id).descending("createdAt").find({
+          success: function(versions){
+            Array.prototype.push.apply(self.versions_, versions.map(Version.wrap));
+            self.versions_.$loading = false
+          }
+        })
     },
 
     calcScheduledDate: function() {
