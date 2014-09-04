@@ -419,10 +419,33 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    buildcontrol: {
+      options: {
+        dir: 'dist',
+        commit: true,
+        push: true,
+        remote: 'server',
+        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+      },
+      beta: {
+        options: {
+          remote: '../',
+          branch: 'dist_beta'
+        }
+      },
+      live: {
+        options: {
+          remote: '../',
+          branch: 'dist_live'
+        }
+      },
     }
   });
 
   grunt.loadNpmTasks('grunt-slim');
+  grunt.loadNpmTasks('grunt-build-control');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -474,5 +497,13 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+
+  grunt.registerTask('deploy:beta', [
+    'buildcontrol:beta'
+  ]);
+
+  grunt.registerTask('deploy:live', [
+    'buildcontrol:live'
   ]);
 };
