@@ -15,7 +15,7 @@
     "parse-js-sdk": "1.2.19",
     "parse-angular-patch": "*",
     "angular-bootstrap": "~0.11.0",
-    "angular-diff": "~1.0.0",
+    "angular-diff": "neoeno/angular-diff",
     "angular-markdown-directive": "~0.3.0"
   },
   "devDependencies": {
