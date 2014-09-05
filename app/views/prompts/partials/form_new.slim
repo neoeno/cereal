@@ -1,0 +1,7 @@
+h3 Submit a new starter
+
+form ng-submit="submitNewPrompt()"
+  .form-group
+    textarea.form-control type="text" rows="2" placeholder="Be concise." ng-model="newPrompt.abstract" ng-disabled="newPrompt.$saving"
+  .form-group.text-right
+    button.btn.btn-primary ng-disabled="newPrompt.$saving" Post

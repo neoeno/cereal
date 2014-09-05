@@ -1,8 +1,8 @@
-.page-index{
+.page-index, .prompt-index{
   margin: $r*2 0;
 }
 
-[class^="page-index__item"]{
+[class^="page-index__item"], [class^="prompt-index__item"]{
   $default-bg: $c-pastel-gray;
   position: relative;
   margin: $r*1 0;

@@ -17,9 +17,10 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ui.bootstrap',
     'cereal.pages',
     'cereal.users',
-    'ui.bootstrap'
+    'cereal.prompts'
   ])
   .config(function ($routeProvider){//}, $locationProvider) {
     // $locationProvider.html5Mode(true);
