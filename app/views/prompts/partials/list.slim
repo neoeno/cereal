@@ -1,0 +1,17 @@
+.prompt-index
+  .prompt-index__item.row ng-repeat="prompt in prompts" ng-click="selectPrompt(prompt)" class="-status-{{prompt.status.toLowerCase()}} {{prompt.$saving ? '-status-saving' : ''}}"
+    .perg-20
+      .-lhs-avatar
+        img ng-src="{{prompt.prompter.avatar}}"
+    .perg-80.-background-box
+      .row.-top-row
+        .col-xs-6
+          .-date
+            ' {{prompt.createdAt | date : "MMMM d"}}
+        .col-xs-6.text-right
+          .-status
+            ' {{prompt.status}}
+      .-title.ellipsis
+        ' {{prompt.abstract}}
+    .-offset-image ng-if="prompt.writer"
+      img ng-src="{{prompt.writer.avatar}}"

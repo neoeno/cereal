@@ -1,0 +1,18 @@
+form.form-subtle ng-submit="savePrompt()"
+  .row
+    .col-sm-9
+      h2 Writing
+    .col-sm-3.text-right style="padding-top: 20px;"
+      button.btn.btn-primary type="submit"
+        .glyphicon.glyphicon-floppy-disk
+  .form-group
+    p ng-bind-html="selectedPrompt.abstract"
+  .form-group
+    textarea.form-control ng-model="selectedPrompt.body" placeholder="WRITE" rows="10"
+  .form-group
+    .btn-group
+      .btn.btn-pastel-gray ng-model="selectedPrompt.status" btn-radio="''" None
+      .btn.btn-pastel-blue ng-model="selectedPrompt.status" btn-radio="'idea'" Idea
+      .btn.btn-pastel-amber ng-model="selectedPrompt.status" btn-radio="'draft'" Draft
+      .btn.btn-pastel-red ng-model="selectedPrompt.status" btn-radio="'help'" Help!
+      .btn.btn-pastel-green ng-model="selectedPrompt.status" btn-radio="'complete'" Complete

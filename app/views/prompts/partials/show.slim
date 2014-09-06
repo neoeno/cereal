@@ -1,0 +1,6 @@
+.page-display
+  h2
+    ' {{selectedPrompt.abstract}}
+  .btn.btn-primary ng-click="editPrompt()" ng-if="isAvailable(selectedPrompt)"
+    ' Do you want to write this? Press this button!
+  .body-text btf-markdown="selectedPrompt.body"

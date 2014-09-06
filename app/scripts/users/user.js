@@ -31,6 +31,10 @@ angular.module('cereal.users').factory('User', function() {
 
     // GETTERS/SETTERS
 
+    get id() {
+      return this.$parseObj.id
+    },
+
     get name() {
       return this.getIfPossible('name')
     },

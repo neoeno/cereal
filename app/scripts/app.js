@@ -29,3 +29,13 @@ angular
         redirectTo: '/login'
       });
   })
+  .constant('ICONS', ['asterisk', 'cloud', 'glass', 'music', 'envelope',
+  'search', 'heart', 'star', 'ok', 'remove', 'film', 'signal',
+  'cog', 'trash', 'home', 'time', 'road', 'lock', 'flag', 'barcode',
+  'tag', 'book', 'facetime-video', 'picture', 'tint',
+  'fast-forward', 'gift', 'eye-open', 'eye-close', 'fire',
+  'plane', 'random', 'calendar', 'comment', 'shopping-cart', 'bullhorn',
+  'bell', 'certificate', 'thumbs-up', 'globe', 'wrench', 'briefcase',
+  'paperclip', 'heart-empty', 'link', 'phone', 'pushpin',
+  'usd', 'send', 'earphone', 'cutlery', 'credit-card',
+  'tree-conifer', 'tree-deciduous'])

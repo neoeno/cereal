@@ -7,22 +7,13 @@
   .row
     .col-md-6
       .perg-offset-20 ng-include="'/views/prompts/partials/form_new.html'"
-  .row
-    .col-md-6
-      .prompt-index
-        .prompt-index__item.row ng-repeat="prompt in prompts" ng-click="selectPrompt(prompt)"
-          .perg-20
-            .-number
-              ' {{$index}}
-          .perg-80.-background-box
-            .row.-top-row
-              .col-xs-6
-                .-date
-                  ' {{prompt.createdAt | date : "MMMM d"}}
-              .col-xs-6.text-right
-                .-status
-                  ' {{prompt.status}}
-            .-title.ellipsis
-              ' {{prompt.abstract}}
-          .-offset-message ng-if="prompt.icon"
-            .glyphicon class="glyphicon-{{prompt.icon}}"
+
+      div ng-include="'/views/prompts/partials/list.html'"
+
+    .col-md-5.col-md-offset-1 ng-if="selectedPrompt"
+      div ng-if="!isEditingPrompt"
+        div ng-include="'/views/prompts/partials/show.html'"
+
+
+      div ng-if="isEditingPrompt"
+        div ng-include="'/views/prompts/partials/form_edit.html'"

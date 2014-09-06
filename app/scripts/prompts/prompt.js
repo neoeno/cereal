@@ -1,4 +1,4 @@
-angular.module('cereal.prompts').factory('Prompt', function(User) {
+angular.module('cereal.prompts').factory('Prompt', function(User, Current) {
   'use strict';
 
   var ParsePrompt = Parse.Object.extend('Prompt')
@@ -51,12 +51,14 @@ angular.module('cereal.prompts').factory('Prompt', function(User) {
       this.$parseObj.set('body', body)
     },
 
-    get writers() {
-      if(typeof this.writers_ === 'undefined') {
-        this.fetchWriters()
+    get writer() {
+      if( this.getIfPossible('writerId') ) {
+        return Current.userCache.get(this.getIfPossible('writerId'))
       }
+    },
 
-      return this.writers_
+    get prompter() {
+      return Current.userCache.get(this.getIfPossible('prompterId'))
     },
 
     get createdAt() {
@@ -76,6 +78,10 @@ angular.module('cereal.prompts').factory('Prompt', function(User) {
       return self.$parseObj.save().then(function() {
         self.$saving = false
       })
+    },
+
+    assignTo: function(user) {
+      this.$parseObj.set('writerId', user.id)
     },
 
     // PRIVATE METHODS //
